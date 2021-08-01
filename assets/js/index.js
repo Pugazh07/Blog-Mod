@@ -40,18 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 const date = new Date(article.createdAt)
                 div3.innerHTML = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
                 div2.appendChild(div3)
-                // if(sessionStorage.getItem("isLoggedIn") === true){
-                    const editLink = document.createElement("a")
-                editLink.href = `/edit/${article.slug}`
-                editLink.innerText = 'Edit'
-                editLink.classList.add('edit-button')
-                const deleteLink = document.createElement("a")
-                deleteLink.href = `/delete/${article.slug}`
-                deleteLink.innerText = 'Remove'
-                deleteLink.classList.add('delete-button')
-                div2.appendChild(editLink)
-                div2.appendChild(deleteLink)
-                // }
+                let editLink=null;
+                let deleteLink=null;
+                // console.log(sessionStorage.getItem("isLoggedIn") == 'true');
+                if(sessionStorage.getItem("isLoggedIn") === 'true'){
+                    editLink = document.createElement("a")
+                    // console.log(editLink)
+                    editLink.href = `/edit/${article.slug}`
+                    editLink.innerText = 'Edit'
+                    editLink.classList.add('edit-button')
+                    deleteLink = document.createElement("a")
+                    deleteLink.href = `/delete/${article.slug}`
+                    deleteLink.innerText = 'Remove'
+                    deleteLink.classList.add('delete-button')
+                    div2.appendChild(editLink)
+                    div2.appendChild(deleteLink)
+                }
+                console.log(div2);
                 div.appendChild(div2)
                 card.appendChild(div)
                 card.setAttribute("data-slug", article.slug)

@@ -5,11 +5,9 @@ const Admin = require('./assets/js/models/admin')
 const Article = require('./assets/js/models/article')
 const bodyParser = require('body-parser');
 
-// mongoose.connect('mongodb://localhost/blog', {
-//     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
-// })
-
-const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.naesn.mongodb.net/myFirstDatabase"
+mongoose.connect('mongodb://localhost/blog', {
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+})
 
 mongoose.connect(uri, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
@@ -42,7 +40,7 @@ app.get('/login', (req, res) => {
 
 app.get('/new', (req, res) => {
     console.log(__dirname)
-    res.sendFile(__dirname + '/new.html')
+    res.sendFile(__dirname + '/newArticle.html')
 })
 
 app.get('/blog/:slug', async (req, res) => {
@@ -60,12 +58,12 @@ app.get('/blog/:slug', async (req, res) => {
 
 app.get('/article/:slug', (req, res) => {
     console.log(__dirname)
-    res.sendFile(__dirname + '/article.html')
+    res.sendFile(__dirname + '/fullArticle.html')
 })
 
 app.get('/edit/:slug', (req, res) => {
     console.log(__dirname)
-    res.sendFile(__dirname + '/edit.html')
+    res.sendFile(__dirname + '/editArticle.html')
 })
 
 app.get('/editblog/:slug', async (req, res) => {
